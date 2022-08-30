@@ -17,7 +17,7 @@ class IncidentRepository
     public function all()
     {
         $incidentData = $this->incident->all();
-        return $incidentData; //$this->customer->all();
+        return $incidentData; 
     }
 
     public function insert($data)
@@ -41,19 +41,8 @@ class IncidentRepository
 
     public function update($data, $id)
     {
-        $selectIncident = $this->incident->find($id);
-
-        if(!$selectIncident)
-        {
-            return $selectIncident;
-        }
-
-        $selectIncident->update($data);
-        // $customerEmploymentDetail = CustomerEmploymentDetail::where('customer_id', $id)->update($data['employment_details']);
-        
-        return $selectIncident;
-
-        
+        $updatedIncident = Incident::where('id', $id)->update($data);
+        return $updatedIncident;
     }
 
     public function getById($id){
