@@ -47,4 +47,14 @@ class IncidentService {
         return $this->incidentRepository->update($data, $id);
 
     }
+
+    public function getById($id)
+    {
+        return $this->incidentRepository->getById($id);
+    }
+
+    public function delete($id)
+    {
+        return $this->incidentRepository->delete($id);
+    }
 }

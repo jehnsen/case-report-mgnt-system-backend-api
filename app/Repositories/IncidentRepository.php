@@ -3,11 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\Incident;
-
+use App\Models\Evidence;
 
 class IncidentRepository
 {
     protected $incident;
+    protected $evidence;
 
     public function __construct(Incident $incident){
         $this->incident = $incident;
@@ -24,14 +25,16 @@ class IncidentRepository
         // customer main info
         $newRecord = $this->incident->create($data);
 
-        // // evidence for this case/incident
-        // $empDetails = $data['employment_details'];
-        // $customerEmploymentDetail = CustomerEmploymentDetail::create([
-        //     'case_id'               => $newRecord->id,
-        //     'evidence_description'  => $empDetails['employer'],      
-        // ]);
-
-
+        // save the evidences for this case/incident
+        $_arr = [];
+        $evidences = $data['evidences'];
+        foreach ($evidences as $prop ) {
+            array_push($_arr, array(
+                'case_id'     => $newRecord->id,
+                'description' => $prop
+            ));
+        }
+        Evidence::insert($_arr);
         return $newRecord;
 
     }
@@ -52,4 +55,26 @@ class IncidentRepository
 
         
     }
+
+    public function getById($id){
+        $incident = Incident::where('incidents.id', $id)->get();
+        $evidences = Evidence::where('evidences.case_id', $id)->get();
+        
+        $response = (object)[
+            'data'  => (object)$incident,
+            'evidences' => $evidences
+        ];
+
+        return $response;
+    }
+
+    public function delete($id)
+    {
+        $incident = $this->incident->find($id);
+        if(!$incident){
+            return $incident;
+        }
+        return $incident->delete();
+    }
+
 }

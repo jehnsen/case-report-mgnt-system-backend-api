@@ -45,4 +45,23 @@ class IncidentController extends Controller
 
         return response([ 'data' => $result, 'message' => 'Updated successfully'], 200);
     }
+
+    public function show($id)
+    {
+        $incident = $this->incidentService->getById($id);
+
+        return response(['data' => $incident], 200);
+        
+    }
+
+    public function destroy($id)
+    {
+        $result = $this->incidentService->delete($id);
+
+        if(!$result){
+            return response([ 'message' => 'Record does not exist!'], 404);
+        }
+        return response([ 'data' => $result, 'message' => 'Deleted successfully'], 200);
+    }
+
 }
