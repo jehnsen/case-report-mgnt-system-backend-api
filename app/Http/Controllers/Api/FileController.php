@@ -3,21 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Services\IncidentService;
+use App\Services\FileService;
 use Illuminate\Http\Request;
 
-class IncidentController extends Controller
+class FileController extends Controller
 {
-    protected $incidentService;
-    // protected $customerResource;
+    protected $fileService;
 
-    public function __construct(IncidentService $incidentService){
-        $this->incidentService = $incidentService;
+    public function __construct(FileService $fileService){
+        $this->fileService = $fileService;
     }
     
     public function index()
     {
-        $result = $this->incidentService->all();
+        $result = $this->fileService->all();
         return response([ 'data' => $result, 'message' => 'Retrieved successfully' ]);
     }
 
@@ -25,14 +24,14 @@ class IncidentController extends Controller
     { 
         $data = $request->input();
 
-        $incident = $this->incidentService->insert($data);
+        $file = $this->fileService->insert($data);
 
-        return response([ 'data' => $incident, 'message' => 'Created successfully' ], 201);
+        return response([ 'data' => $file, 'message' => 'Created successfully' ], 201);
     }
 
     public function update(Request $request, $id)
     {
-        $result = $this->incidentService->update($request->input(), $id);
+        $result = $this->fileService->update($request->input(), $id);
 
         if(!$result){
             return response([ 'message' => 'No record found!'], 404);
@@ -43,19 +42,25 @@ class IncidentController extends Controller
 
     public function show($id)
     {
-        $incident = $this->incidentService->getById($id);
+        $file = $this->fileService->getById($id);
 
-        return response(['data' => $incident], 200);
+        return response(['data' => $file], 200);
+    }
+
+    public function getByCaseId($id)
+    {
+        $file = $this->fileService->getByCaseId($id);
+
+        return response(['data' => $file], 200);
     }
 
     public function destroy($id)
     {
-        $result = $this->incidentService->delete($id);
+        $result = $this->fileService->delete($id);
 
         if(!$result){
             return response([ 'message' => 'Record does not exist!'], 404);
         }
         return response([ 'data' => $result, 'message' => 'Deleted successfully'], 200);
     }
-
 }

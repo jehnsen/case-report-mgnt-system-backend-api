@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Evidence extends Model
+class File extends Model
 {
     use HasFactory;
-    protected $table = 'evidences';
+    protected $table = 'files';
 
     protected $fillable = [
         'case_id',
-        'description'
+        'filename',
+        'filetype'
     ];
 
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
-
 }
