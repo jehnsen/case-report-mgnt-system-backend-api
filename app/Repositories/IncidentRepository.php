@@ -23,6 +23,12 @@ class IncidentRepository
 
     public function insert($data)
     {
+        $newCaseNo = json_decode(json_encode($data))->case_no;
+        $existingRecord = Incident::where('incidents.case_no', $newCaseNo)->first();
+        if($existingRecord){
+            return json_decode(json_encode($existingRecord));
+        }
+
         // customer main info
         $newRecord = $this->incident->create($data);
 
@@ -55,6 +61,14 @@ class IncidentRepository
             'data'  => (object)$incident,
             'evidences' => $evidences
         ];
+
+        return $response;
+    }
+
+    public function getByCaseNo($caseId){
+        $incident = Incident::where('incidents.id', $caseId)->get();
+       
+        $response = (object)$incident;
 
         return $response;
     }

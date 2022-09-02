@@ -58,4 +58,11 @@ class IncidentController extends Controller
         return response([ 'data' => $result, 'message' => 'Deleted successfully'], 200);
     }
 
+    public function getByCaseNo($caseId)
+    {
+        $incident = $this->incidentService->getByCaseNo($caseId);
+
+        return response(['data' => $incident], 200);
+    }
+
 }
