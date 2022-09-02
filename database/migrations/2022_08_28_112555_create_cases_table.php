@@ -25,9 +25,9 @@ class CreateCasesTable extends Migration
             $table->string('location');
             $table->string('incident_date');
             $table->string('incident_time');
-            $table->string('victim');
-            $table->string('suspect');
-            $table->string('reported_by');
+            $table->string('victim')->nullable();
+            $table->string('suspect')->nullable();
+            $table->string('reported_by')->nullable();
             $table->integer('status');
             $table->timestamps();
         });

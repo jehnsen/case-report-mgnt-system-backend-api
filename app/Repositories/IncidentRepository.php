@@ -37,7 +37,7 @@ class IncidentRepository
         }
         Evidence::insert($_arr);
         File::where('case_id', 0)->update(['case_id' => $newRecord->id]);
-        return $file;
+        return $newRecord;
 
     }
 
