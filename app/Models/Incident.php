@@ -22,6 +22,7 @@ class Incident extends Model
         'incident_time',
         'victim',
         'suspect',
+        'reported_by',
         'status'
     ];
 

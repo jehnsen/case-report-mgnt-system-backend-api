@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Incident;
 use App\Models\Evidence;
+use App\Models\File;
 
 class IncidentRepository
 {
@@ -35,7 +36,8 @@ class IncidentRepository
             ));
         }
         Evidence::insert($_arr);
-        return $newRecord;
+        File::where('case_id', 0)->update(['case_id' => $newRecord->id]);
+        return $file;
 
     }
 
