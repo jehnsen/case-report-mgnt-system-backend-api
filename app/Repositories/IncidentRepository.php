@@ -65,8 +65,8 @@ class IncidentRepository
         return $response;
     }
 
-    public function getByCaseNo($caseId){
-        $incident = Incident::where('incidents.id', $caseId)->get();
+    public function getByCaseNo($caseNo){
+        $incident = Incident::where('incidents.case_no', $caseNo)->get();
        
         $response = (object)$incident;
 

@@ -53,9 +53,9 @@ class IncidentService {
         return $this->incidentRepository->getById($id);
     }
 
-    public function getByCaseNo($caseId)
+    public function getByCaseNo($caseNo)
     {
-        return $this->incidentRepository->getByCaseNo($caseId);
+        return $this->incidentRepository->getByCaseNo($caseNo);
     }
 
     public function delete($id)
