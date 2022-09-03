@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\IncidentController;
 use App\Http\Controllers\Api\ImageUploadController;
 use App\Http\Controllers\Api\FileController;
+use App\Http\Controllers\Api\EvidenceController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +27,8 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware(['auth:api'])->group(function () {
     Route::resource('incident', IncidentController::class);
     Route::get('incident/case/case-number/{caseNo}', [IncidentController::class, 'getByCaseNo']);
+    Route::resource('evidence', EvidenceController::class);
+    Route::get('incident/evidence/{caseId}', [EvidenceController::class, 'getEvidenceByCaseId']);
     Route::resource('file', FileController::class);
     Route::get('file/case/{caseId}', [FileController::class, 'getByCaseId']);
     Route::post('image-upload', [ImageUploadController::class, 'upload'])->middleware("cors");

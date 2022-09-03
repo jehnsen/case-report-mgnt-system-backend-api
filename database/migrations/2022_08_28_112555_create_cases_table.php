@@ -21,8 +21,8 @@ class CreateCasesTable extends Migration
             $table->longText('incident_title');
             $table->longText('incident_description');
             $table->string('investigator');
-            $table->string('disposition');
-            $table->string('location');
+            $table->string('disposition')->nullable();
+            $table->string('location')->nullable();
             $table->string('incident_date');
             $table->string('incident_time');
             $table->string('victim')->nullable();
