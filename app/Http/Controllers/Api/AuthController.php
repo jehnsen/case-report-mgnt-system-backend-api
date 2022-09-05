@@ -44,4 +44,22 @@ class AuthController extends Controller
         return response([ 'user' => auth()->user(), 'access_token' => $accessToken ]);
     }
 
+    public function get(){
+        return User::get();
+    }
+
+    public function update(Request $request){
+        return User::where('id', $request->id)->update([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'username' => $request->username,
+            'password' => bcrypt($request->password)
+        ]);
+
+    }
+
+    public function delete($id){
+        return User::where('id',$id)->delete();
+    }
+
 }

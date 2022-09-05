@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\EvidenceController;
 use App\Http\Controllers\Api\RequesterController;
 use App\Http\Controllers\Api\PersonController;
+use App\http\Controllers\Api\DispositionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +27,9 @@ use App\Http\Controllers\Api\PersonController;
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::put('user/update', [AuthController::class, 'update']);
+Route::get('user', [AuthController::class, 'get']);
+Route::delete('user/{id}', [AuthController::class, 'delete']);
 Route::middleware(['auth:api'])->group(function () {
     Route::resource('incident', IncidentController::class);
     Route::get('incident/case/case-number/{caseNo}', [IncidentController::class, 'getByCaseNo']);
@@ -37,4 +41,5 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('images/{filename}', [ImageUploadController::class, 'display']);
     Route::resource('requester', RequesterController::class);
     Route::resource('person', PersonController::class);
+    Route::resource('disposition', DispositionController::class);
 });
