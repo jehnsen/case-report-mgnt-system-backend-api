@@ -21,10 +21,6 @@ use App\http\Controllers\Api\DispositionController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 Route::post('register', [AuthController::class, 'register'])->middleware("cors");
 Route::post('login', [AuthController::class, 'login'])->middleware("cors");
 Route::put('user/update', [AuthController::class, 'update'])->middleware("cors");
@@ -43,5 +39,3 @@ Route::group(['middleware' => ['auth:api','cors']], function () {
     Route::resource('person', PersonController::class);
     Route::resource('disposition', DispositionController::class);
 });
-// Route::middleware(['auth:api'])->group(function () {
-// });
