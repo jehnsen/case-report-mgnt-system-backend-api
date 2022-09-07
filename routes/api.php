@@ -25,21 +25,23 @@ use App\http\Controllers\Api\DispositionController;
 //     return $request->user();
 // });
 
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
-Route::put('user/update', [AuthController::class, 'update']);
-Route::get('user', [AuthController::class, 'get']);
-Route::delete('user/{id}', [AuthController::class, 'delete']);
-Route::middleware(['auth:api'])->group(function () {
+Route::post('register', [AuthController::class, 'register'])->middleware("cors");
+Route::post('login', [AuthController::class, 'login'])->middleware("cors");
+Route::put('user/update', [AuthController::class, 'update'])->middleware("cors");
+Route::get('user', [AuthController::class, 'get'])->middleware("cors");
+Route::delete('user/{id}', [AuthController::class, 'delete'])->middleware("cors");
+Route::group(['middleware' => ['auth:api','cors']], function () {
     Route::resource('incident', IncidentController::class);
     Route::get('incident/case/case-number/{caseNo}', [IncidentController::class, 'getByCaseNo']);
     Route::resource('evidence', EvidenceController::class);
     Route::get('incident/evidence/{caseId}', [EvidenceController::class, 'getEvidenceByCaseId']);
     Route::resource('file', FileController::class);
     Route::get('file/case/{caseId}', [FileController::class, 'getByCaseId']);
-    Route::post('image-upload', [ImageUploadController::class, 'upload'])->middleware("cors");
+    Route::post('image-upload', [ImageUploadController::class, 'upload']);
     Route::get('images/{filename}', [ImageUploadController::class, 'display']);
     Route::resource('requester', RequesterController::class);
     Route::resource('person', PersonController::class);
     Route::resource('disposition', DispositionController::class);
 });
+// Route::middleware(['auth:api'])->group(function () {
+// });
