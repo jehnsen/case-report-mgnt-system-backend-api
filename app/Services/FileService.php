@@ -42,6 +42,11 @@ class FileService {
     {
         return $this->fileRepository->getByCaseId($id);
     }
+    
+    public function updateByCaseId($caseId)
+    {
+        return $this->fileRepository->updateByCaseId($caseId);
+    }
 
     public function delete($id)
     {

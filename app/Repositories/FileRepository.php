@@ -35,6 +35,10 @@ class FileRepository
         return File::where('files.case_id', $id)->get();
     }
 
+    public function updateByCaseId($caseId){
+        return File::where('files.case_id', 0)->update(['case_id' => $caseId]);
+    }
+
     public function delete($id)
     {
         $retrievedFile = $this->file->find($id);

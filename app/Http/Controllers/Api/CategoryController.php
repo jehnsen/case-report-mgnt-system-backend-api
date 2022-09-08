@@ -3,20 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Services\FileService;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class FileController extends Controller
+class CategoryController extends Controller
 {
-    protected $fileService;
-
-    public function __construct(FileService $fileService){
-        $this->fileService = $fileService;
-    }
-    
     public function index()
     {
-        $result = $this->fileService->all();
+        $result = Category::all();
         return response([ 'data' => $result, 'message' => 'Retrieved successfully' ]);
     }
 
@@ -24,14 +18,14 @@ class FileController extends Controller
     { 
         $data = $request->input();
 
-        $file = $this->fileService->insert($data);
+        $file = Category::insert($data);
 
         return response([ 'data' => $file, 'message' => 'Created successfully' ], 201);
     }
 
     public function update(Request $request, $id)
     {
-        $result = $this->fileService->update($request->input(), $id);
+        $result = Category::where('id', $id)->update(['description' => $request->description]);
 
         if(!$result){
             return response([ 'message' => 'No record found!'], 404);
@@ -42,27 +36,14 @@ class FileController extends Controller
 
     public function show($id)
     {
-        $file = $this->fileService->getById($id);
+        $result = Category::find($id);
 
-        return response(['data' => $file], 200);
-    }
-
-    public function getByCaseId($id)
-    {
-        $file = $this->fileService->getByCaseId($id);
-
-        return response(['data' => $file], 200);
-    }
-
-    public function updateByCaseId($caseId){
-        $file = $this->fileService->updateByCaseId($caseId);
-
-        return response(['data' => $file, 'message' => 'Updated successfully'], 200);
+        return response(['data' => $result], 200);
     }
 
     public function destroy($id)
     {
-        $result = $this->fileService->delete($id);
+        $result = Category::where('id', $id)->delete();
 
         if(!$result){
             return response([ 'message' => 'Record does not exist!'], 404);

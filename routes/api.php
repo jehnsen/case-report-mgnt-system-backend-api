@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\EvidenceController;
 use App\Http\Controllers\Api\RequesterController;
 use App\Http\Controllers\Api\PersonController;
 use App\http\Controllers\Api\DispositionController;
+use App\http\Controllers\Api\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,9 +34,11 @@ Route::group(['middleware' => ['auth:api','cors']], function () {
     Route::get('incident/evidence/{caseId}', [EvidenceController::class, 'getEvidenceByCaseId']);
     Route::resource('file', FileController::class);
     Route::get('file/case/{caseId}', [FileController::class, 'getByCaseId']);
+    Route::put('file/case/{caseId}', [FileController::class, 'updateByCaseId']);
     Route::post('image-upload', [ImageUploadController::class, 'upload']);
     Route::get('images/{filename}', [ImageUploadController::class, 'display']);
     Route::resource('requester', RequesterController::class);
     Route::resource('person', PersonController::class);
     Route::resource('disposition', DispositionController::class);
+    Route::resource('category', CategoryController::class);
 });
