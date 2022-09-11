@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\RequesterController;
 use App\Http\Controllers\Api\PersonController;
 use App\http\Controllers\Api\DispositionController;
 use App\http\Controllers\Api\CategoryController;
+use App\http\Controllers\Api\FirearmInventoryController;
+use App\http\Controllers\Api\CriminalDrugTestController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,4 +43,6 @@ Route::group(['middleware' => ['auth:api','cors']], function () {
     Route::resource('person', PersonController::class);
     Route::resource('disposition', DispositionController::class);
     Route::resource('category', CategoryController::class);
+    Route::resource('firearms', FirearmInventoryController::class);
+    Route::resource('drugtest', CriminalDrugTestController::class);
 });
