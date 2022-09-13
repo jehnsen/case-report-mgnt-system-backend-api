@@ -10,6 +10,7 @@ class Incident extends Model
     use HasFactory;
 
     protected $fillable = [
+        'division',
         'case_no',
         'case_nature',
         'requesting_party',

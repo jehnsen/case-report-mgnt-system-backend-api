@@ -15,6 +15,7 @@ class CreateCasesTable extends Migration
     {
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
+            $table->string('division');
             $table->string('case_no');
             $table->string('case_nature');
             $table->string('requesting_party');
