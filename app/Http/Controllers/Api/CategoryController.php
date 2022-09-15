@@ -25,7 +25,8 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        $result = Category::where('id', $id)->update(['description' => $request->description]);
+        $data = $request->input();
+        $result = Category::where('id', $id)->update($data);
 
         if(!$result){
             return response([ 'message' => 'No record found!'], 404);

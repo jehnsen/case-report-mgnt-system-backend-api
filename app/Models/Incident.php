@@ -23,7 +23,10 @@ class Incident extends Model
         'incident_time',
         'victim',
         'suspect',
+        'engine_no',
+        'chassis_no',
         'reported_by',
+        'encoder_id',
         'status'
     ];
 

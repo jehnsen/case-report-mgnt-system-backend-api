@@ -21,14 +21,17 @@ class CreateCasesTable extends Migration
             $table->string('requesting_party');
             $table->longText('incident_title');
             $table->longText('incident_description');
-            $table->string('investigator');
+            $table->string('investigator')->nullable();
             $table->string('disposition')->nullable();
             $table->string('location')->nullable();
             $table->string('incident_date');
             $table->string('incident_time');
             $table->string('victim')->nullable();
             $table->string('suspect')->nullable();
+            $table->string('chassis_no')->nullable();
+            $table->string('engine_no')->nullable();
             $table->string('reported_by')->nullable();
+            $table->string('encoder_id')->nullable();
             $table->integer('status');
             $table->timestamps();
         });
