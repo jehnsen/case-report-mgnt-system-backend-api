@@ -58,9 +58,9 @@ class CriminalDrugTestController extends Controller
     {
         $result = $this->criminalDrugTestService->delete($id);
 
-        if(!$result){
-            return response([ 'message' => 'Record does not exist!'], 404);
-        }
+        // if(!$result){
+        //     return response([ 'message' => 'Record does not exist!'], 404);
+        // }
         return response([ 'data' => $result, 'message' => 'Deleted successfully'], 200);
     }
 }

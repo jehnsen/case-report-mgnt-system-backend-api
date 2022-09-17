@@ -45,4 +45,5 @@ Route::group(['middleware' => ['auth:api','cors']], function () {
     Route::resource('category', CategoryController::class);
     Route::resource('firearms', FirearmInventoryController::class);
     Route::resource('drugtest', CriminalDrugTestController::class);
+    Route::put('user/update-password/{id}', [AuthController::class, 'updatePassword']);
 });

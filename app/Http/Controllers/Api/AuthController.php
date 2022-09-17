@@ -61,6 +61,10 @@ class AuthController extends Controller
 
     }
 
+    public function updatePassword(Request $request){
+        return User::where('id', $request->id)->update(['password' => bcrypt($request->password)]);
+    }
+
     public function delete($id){
         return User::where('id',$id)->delete();
     }
