@@ -19,8 +19,8 @@ class CreateCasesTable extends Migration
             $table->string('case_no');
             $table->string('case_nature');
             $table->string('requesting_party');
-            $table->longText('incident_title');
-            $table->longText('incident_description');
+            $table->longText('incident_title')->nullable();
+            $table->longText('incident_description')->nullable();
             $table->string('investigator')->nullable();
             $table->string('disposition')->nullable();
             $table->string('location')->nullable();

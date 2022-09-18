@@ -16,7 +16,7 @@ class CreateEvidenceTable extends Migration
         Schema::create('evidences', function (Blueprint $table) {
             $table->id();
             $table->integer('case_id');
-            $table->string('description');
+            $table->longText('description');
             $table->timestamps();
         });
     }

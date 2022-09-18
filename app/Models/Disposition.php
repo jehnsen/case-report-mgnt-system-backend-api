@@ -10,7 +10,8 @@ class Disposition extends Model
     use HasFactory;
 
     protected $fillable = [
-        'description'
+        'description',
+        'division'
     ];
 
     protected $hidden = [
