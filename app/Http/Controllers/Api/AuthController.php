@@ -56,7 +56,8 @@ class AuthController extends Controller
             'lastname' => $request->lastname,
             'username' => $request->username,
             'password' => bcrypt($request->password),
-            'usertype' => $request->usertype
+            'usertype' => $request->usertype,
+            'division' => $request->division
         ]);
 
     }
