@@ -5,6 +5,8 @@ namespace App\Repositories;
 use App\Models\Incident;
 use App\Models\Evidence;
 use App\Models\File;
+use App\Models\Suspect;
+use App\Models\Victim;
 
 class IncidentRepository
 {
@@ -42,7 +44,24 @@ class IncidentRepository
             ));
         }
         Evidence::insert($_arr);
+
+        //suspect
+        
+        $_suspectArray = [];
+        $suspects = $data['suspects'];
+        foreach ($suspects as $suspect) {
+            array_push($_suspectArray, array( 'name' => $prop ));
+        }
+
+        //victim
+        $_victimArray = [];
+        $victims = $data['victims'];
+        foreach ($victims as $victim){
+            array_push($_victimArray, array( 'name' => $prop ));
+        }
+
         File::where('case_id', 0)->update(['case_id' => $newRecord->id]);
+
         return $newRecord;
 
     }
