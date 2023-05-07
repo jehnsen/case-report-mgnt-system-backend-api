@@ -34,7 +34,7 @@ class IncidentController extends Controller
     {
         $result = $this->incidentService->update($request->input(), $id);
 
-        if(!$result){
+        if(!$result) {
             return response([ 'message' => 'No record found!'], 404);
         }
 

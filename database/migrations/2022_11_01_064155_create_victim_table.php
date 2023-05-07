@@ -15,6 +15,7 @@ class CreateVictimTable extends Migration
     {
         Schema::create('victim', function (Blueprint $table) {
             $table->id();
+            $table->integer('case_id');
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
@@ -22,6 +23,7 @@ class CreateVictimTable extends Migration
             $table->string('gender')->nullable();
             $table->string('civil_status')->nullable();
             $table->integer('age')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

@@ -17,8 +17,8 @@ class FirearmInventoryRepository
 
     public function insert($data)
     {
-        return $data;
-        // return FirearmInventory::create($data);
+        // return $data;
+        return FirearmInventory::create($data);
     }
 
     public function update($data, $id)

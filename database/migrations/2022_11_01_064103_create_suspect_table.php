@@ -15,6 +15,7 @@ class CreateSuspectTable extends Migration
     {
         Schema::create('suspect', function (Blueprint $table) {
             $table->id();
+            $table->integer('case_id');
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
@@ -22,6 +23,7 @@ class CreateSuspectTable extends Migration
             $table->string('gender')->nullable();
             $table->string('civil_status')->nullable();
             $table->integer('age')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

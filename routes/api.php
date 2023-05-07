@@ -13,6 +13,8 @@ use App\http\Controllers\Api\DispositionController;
 use App\http\Controllers\Api\CategoryController;
 use App\http\Controllers\Api\FirearmInventoryController;
 use App\http\Controllers\Api\CriminalDrugTestController;
+use App\http\Controllers\Api\SuspectController;
+use App\http\Controllers\Api\VictimController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,6 +43,10 @@ Route::group(['middleware' => ['auth:api','cors']], function () {
     Route::get('images/{filename}', [ImageUploadController::class, 'display']);
     Route::resource('requester', RequesterController::class);
     Route::resource('person', PersonController::class);
+    Route::resource('suspect', SuspectController::class);
+    Route::resource('victim', VictimController::class);
+    Route::get('suspect/case/{caseId}', [SuspectController::class, 'getByCaseId']);
+    Route::get('victim/case/{caseId}', [VictimController::class, 'getByCaseId']);
     Route::resource('disposition', DispositionController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('firearms', FirearmInventoryController::class);

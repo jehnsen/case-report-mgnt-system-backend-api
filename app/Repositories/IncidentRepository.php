@@ -31,7 +31,7 @@ class IncidentRepository
             return json_decode(json_encode($existingRecord));
         }
 
-        // customer main info
+        // case main info
         $newRecord = $this->incident->create($data);
 
         // save the evidences for this case/incident
@@ -44,26 +44,13 @@ class IncidentRepository
             ));
         }
         Evidence::insert($_arr);
-
-        //suspect
-        
-        $_suspectArray = [];
-        $suspects = $data['suspects'];
-        foreach ($suspects as $suspect) {
-            array_push($_suspectArray, array( 'name' => $prop ));
-        }
-
-        //victim
-        $_victimArray = [];
-        $victims = $data['victims'];
-        foreach ($victims as $victim){
-            array_push($_victimArray, array( 'name' => $prop ));
-        }
-
+        Victim::where('status', 0)->update(['case_id' => $newRecord->id]);
+        Victim::where('status', 0)->update(['status' => 1]);
+        Suspect::where('status', 0)->update(['case_id' => $newRecord->id]);
+        Suspect::where('status', 0)->update(['status' => 1]);
         File::where('case_id', 0)->update(['case_id' => $newRecord->id]);
 
         return $newRecord;
-
     }
 
     public function update($data, $id)

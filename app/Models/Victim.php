@@ -10,13 +10,15 @@ class Victim extends Model
     use HasFactory;
 
     protected $fillable = [
+        'case_id',
         'firstname',
         'middlename',
         'lastname',
         'address',
         'age',
         'gender',
-        'civil_status'
+        'civil_status',
+        'status'
     ];
 
     protected $hidden = [
