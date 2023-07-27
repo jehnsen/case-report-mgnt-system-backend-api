@@ -56,6 +56,25 @@ class IncidentRepository
     public function update($data, $id)
     {
         $updatedIncident = Incident::where('id', $id)->update($data);
+
+        // $_arr = [];
+        // $evidences = $data['evidences'];
+        // if (count($evidences) > 0) {
+        //     foreach ($evidences as $prop ) {
+        //         array_push($_arr, array(
+        //             'case_id'     => $newRecord->id,
+        //             'description' => $prop
+        //         ));
+        //     }
+        //     Evidence::insert($_arr);
+        // }
+        
+        // Victim::where('status', 0)->update(['case_id' => $id]);
+        // Victim::where('status', 0)->update(['status' => 1]);
+        // Suspect::where('status', 0)->update(['case_id' => $id]);
+        // Suspect::where('status', 0)->update(['status' => 1]);
+        // File::where('case_id', 0)->update(['case_id' => $id]);
+        
         return $updatedIncident;
     }
 
