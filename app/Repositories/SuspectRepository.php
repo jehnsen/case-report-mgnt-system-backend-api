@@ -9,17 +9,17 @@ class SuspectRepository
     protected $suspect;
 
     public function __construct(Suspect $suspect){
-        $this->person = $suspect;
+        $this->suspect = $suspect;
     }
 
     public function all()
     {
-        return $file = $this->person->all(); 
+        return $this->suspect->all(); 
     }
 
     public function insert($data)
     {
-        return $this->person->create($data);
+        return $this->suspect->create($data);
     }
 
     public function update($data, $id)
@@ -28,7 +28,7 @@ class SuspectRepository
     }
 
     public function getById($id){
-        return Suspect::where('persons.id', $id)->get();
+        return Suspect::where('suspects.id', $id)->get();
     }
 
     public function getByCaseId($caseId){
@@ -37,7 +37,7 @@ class SuspectRepository
 
     public function delete($id)
     {
-        $result = $this->person->find($id);
+        $result = $this->suspect->find($id);
         if(!$result){
             return $result;
         }

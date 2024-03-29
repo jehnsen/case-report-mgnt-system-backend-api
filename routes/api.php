@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\PersonController;
 use App\http\Controllers\Api\DispositionController;
 use App\http\Controllers\Api\CategoryController;
 use App\http\Controllers\Api\FirearmInventoryController;
+use App\http\Controllers\Api\FirearmController;
 use App\http\Controllers\Api\CriminalDrugTestController;
 use App\http\Controllers\Api\SuspectController;
 use App\http\Controllers\Api\VictimController;
@@ -21,7 +22,7 @@ use App\http\Controllers\Api\VictimController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
+| routes are loaded by the RouteServiceProvider within a group whichππ
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
@@ -43,13 +44,14 @@ Route::group(['middleware' => ['auth:api','cors']], function () {
     Route::get('images/{filename}', [ImageUploadController::class, 'display']);
     Route::resource('requester', RequesterController::class);
     Route::resource('person', PersonController::class);
-    Route::resource('suspect', SuspectController::class);
-    Route::resource('victim', VictimController::class);
+    Route::resource('suspects', SuspectController::class);
+    Route::resource('victims', VictimController::class);
     Route::get('suspect/case/{caseId}', [SuspectController::class, 'getByCaseId']);
     Route::get('victim/case/{caseId}', [VictimController::class, 'getByCaseId']);
     Route::resource('disposition', DispositionController::class);
-    Route::resource('category', CategoryController::class);
-    Route::resource('firearms', FirearmInventoryController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('firearms', FirearmController::class);
+    Route::get('firearms/case/{id}', [FirearmController::class, 'getByCaseId']);
     Route::resource('drugtest', CriminalDrugTestController::class);
     Route::put('user/update-password/{id}', [AuthController::class, 'updatePassword']);
 });

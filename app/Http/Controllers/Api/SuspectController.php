@@ -23,7 +23,7 @@ class SuspectController extends Controller
     public function store(Request $request)
     { 
         $data = $request->input();
-
+       
         $file = $this->suspectService->insert($data);
 
         return response([ 'data' => $file, 'message' => 'Created successfully' ], 201);

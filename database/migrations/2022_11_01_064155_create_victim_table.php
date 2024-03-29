@@ -13,9 +13,9 @@ class CreateVictimTable extends Migration
      */
     public function up()
     {
-        Schema::create('victim', function (Blueprint $table) {
-            $table->id();
-            $table->integer('case_id');
+        Schema::create('victims', function (Blueprint $table) {
+            $table->id()->increments('id');
+            $table->integer('case_id')->default(0);
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
@@ -35,6 +35,6 @@ class CreateVictimTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('victim');
+        Schema::dropIfExists('victims');
     }
 }

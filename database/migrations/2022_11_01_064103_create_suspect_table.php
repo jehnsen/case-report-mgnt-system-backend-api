@@ -13,9 +13,9 @@ class CreateSuspectTable extends Migration
      */
     public function up()
     {
-        Schema::create('suspect', function (Blueprint $table) {
-            $table->id();
-            $table->integer('case_id');
+        Schema::create('suspects', function (Blueprint $table) {
+            $table->id()->increments('id');
+            $table->integer('case_id')->default(0);
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
@@ -35,6 +35,6 @@ class CreateSuspectTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suspect');
+        Schema::dropIfExists('suspects');
     }
 }

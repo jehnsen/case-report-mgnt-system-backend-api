@@ -7,6 +7,7 @@ use App\Models\Evidence;
 use App\Models\File;
 use App\Models\Suspect;
 use App\Models\Victim;
+use App\Models\Firearm;
 
 class IncidentRepository
 {
@@ -46,8 +47,14 @@ class IncidentRepository
         Evidence::insert($_arr);
         Victim::where('status', 0)->update(['case_id' => $newRecord->id]);
         Victim::where('status', 0)->update(['status' => 1]);
+
         Suspect::where('status', 0)->update(['case_id' => $newRecord->id]);
         Suspect::where('status', 0)->update(['status' => 1]);
+
+        Firearm::where('case_no', 'new')->update(['case_no' => $newRecord->id]);
+        Firearm::where('case_id', 0)->update(['case_id' => $newRecord->id]);
+        // Firearm::where('status', 0)->update(['status' => 1]);
+
         File::where('case_id', 0)->update(['case_id' => $newRecord->id]);
 
         return $newRecord;

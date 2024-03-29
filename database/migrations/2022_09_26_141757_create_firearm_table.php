@@ -13,8 +13,9 @@ class CreateFirearmTable extends Migration
      */
     public function up()
     {
-        Schema::create('firearm', function (Blueprint $table) {
+        Schema::create('firearms', function (Blueprint $table) {
             $table->id();
+            $table->integer('case_id')->default(0);
             $table->string('case_no');
             $table->string('firearm_name')->nullable();
             $table->string('cartridge')->nullable();
@@ -26,6 +27,7 @@ class CreateFirearmTable extends Migration
             $table->string('fmodel')->nullable();
             $table->string('ftype')->nullable();
             $table->string('fserial_no')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
