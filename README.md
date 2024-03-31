@@ -1,4 +1,4 @@
-<!-- 
+
 
 php artisan key:generate 
 php artisan passport:keys   
@@ -17,12 +17,10 @@ steve - capt
 https://gist.github.com/bradtraversy/7485f928e3e8f08ee6bccbe0a681a821?permalink_comment_id=4344553 
 
 
--->
-
 
 ## SQL SCRIPT
 
-<!-- 
+
 
 CREATE DATABASE `crms_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
@@ -377,4 +375,3 @@ INSERT INTO `crms_db`.`users`
 `updated_at`)
 VALUES ('2', 'steve', 'rogers', 'steve', '$2y$10$9WnnyovH.lCt0TUQYA.2O.BlO9HjT6mUq95tWNlSJ.GRfSH7yqzF.', 'Administrator', '', NULL, NULL, '2024-03-26 11:18:45', '2024-03-26 11:18:45'); 
 
--->
