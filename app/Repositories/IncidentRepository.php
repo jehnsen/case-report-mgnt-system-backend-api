@@ -45,6 +45,7 @@ class IncidentRepository
             ));
         }
         Evidence::insert($_arr);
+
         Victim::where('status', 0)->update(['case_id' => $newRecord->id]);
         Victim::where('status', 0)->update(['status' => 1]);
 
@@ -62,25 +63,30 @@ class IncidentRepository
 
     public function update($data, $id)
     {
-        $updatedIncident = Incident::where('id', $id)->update($data);
-
-        // $_arr = [];
-        // $evidences = $data['evidences'];
-        // if (count($evidences) > 0) {
-        //     foreach ($evidences as $prop ) {
-        //         array_push($_arr, array(
-        //             'case_id'     => $newRecord->id,
-        //             'description' => $prop
-        //         ));
-        //     }
-        //     Evidence::insert($_arr);
-        // }
         
-        // Victim::where('status', 0)->update(['case_id' => $id]);
-        // Victim::where('status', 0)->update(['status' => 1]);
-        // Suspect::where('status', 0)->update(['case_id' => $id]);
-        // Suspect::where('status', 0)->update(['status' => 1]);
-        // File::where('case_id', 0)->update(['case_id' => $id]);
+        $updatedIncident = Incident::where('id', $id)->update($data['incident']);
+
+        // save the evidences for this case/incident
+        $_arr = [];
+        $evidences = $data['evidences'];
+        foreach ($evidences as $evidence ) {
+            array_push($_arr, array(
+                'case_id'     => $id,
+                'description' => $evidence['description']
+            ));
+        }
+        // delete all evidence related to this record
+        Evidence::whereIn('case_id', (array)$id)->delete();
+        // then save the new evidences
+        Evidence::insert($_arr);
+        
+       
+        Victim::where('status', 0)->update(['case_id' => $id]);
+        Victim::where('status', 0)->update(['status' => 1]);
+        Suspect::where('status', 0)->update(['case_id' => $id]);
+        Suspect::where('status', 0)->update(['status' => 1]);
+        File::where('case_id', 0)->update(['case_id' => $id]);
+        Firearm::where('case_id', 0)->update(['case_id' => $id]);
         
         return $updatedIncident;
     }
@@ -88,10 +94,18 @@ class IncidentRepository
     public function getById($id){
         $incident = Incident::where('incidents.id', $id)->get();
         $evidences = Evidence::where('evidences.case_id', $id)->get();
-        
+        $suspects = Suspect::where('suspects.case_id', $id)->get();
+        $victims = Victim::where('victims.case_id', $id)->get();
+        $files = File::where('files.case_id', $id)->get();
+        $firearms = Firearm::where('firearms.case_id', $id)->get();
+
         $response = (object)[
             'data'  => (object)$incident,
-            'evidences' => $evidences
+            'evidences' => $evidences,
+            'suspects' => $suspects,
+            'victims' => $victims,
+            'files' => $files,
+            'firearms' => $firearms
         ];
 
         return $response;
@@ -112,6 +126,13 @@ class IncidentRepository
             return $incident;
         }
         return $incident->delete();
+    }
+
+    public function cleanEntry()
+    {
+        Suspect::whereIn('case_id',[0])->delete();
+        Victim::whereIn('case_id',[0])->delete();
+        File::whereIn('case_id',[0])->delete();
     }
 
 }

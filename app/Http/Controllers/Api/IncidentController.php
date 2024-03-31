@@ -65,4 +65,10 @@ class IncidentController extends Controller
         return response(['data' => $incident], 200);
     }
 
+    public function cleanEntry()
+    {
+        return $this->incidentService->cleanEntry();
+
+    }
+
 }

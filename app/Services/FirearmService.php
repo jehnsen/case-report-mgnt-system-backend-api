@@ -31,6 +31,11 @@ class FirearmService {
         return $this->firearmRepository->update($data, $id);
     }
 
+    public function getById($id)
+    {
+        return $this->firearmRepository->getById($id);
+    }
+
     public function getByCaseId($case_id)
     {
         return $this->firearmRepository->getByCaseId($case_id);

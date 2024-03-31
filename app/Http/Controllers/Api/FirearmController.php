@@ -38,7 +38,9 @@ class FirearmController extends Controller
 
     public function show($id)
     {
-        
+        $result = $this->firearmService->getById($id);
+        if (!$result) return (object)null;
+        return response($result, 200);
     }
 
     public function getByCaseNo($caseNo)

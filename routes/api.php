@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth:api','cors']], function () {
     Route::get('incident/case/case-number/{caseNo}', [IncidentController::class, 'getByCaseNo']);
     Route::resource('evidence', EvidenceController::class);
     Route::get('incident/evidence/{caseId}', [EvidenceController::class, 'getEvidenceByCaseId']);
+    Route::delete('incident/entries/clean', [IncidentController::class, 'cleanEntry']);
     Route::resource('file', FileController::class);
     Route::get('file/case/{caseId}', [FileController::class, 'getByCaseId']);
     Route::put('file/case/{caseId}', [FileController::class, 'updateByCaseId']);
@@ -46,8 +47,8 @@ Route::group(['middleware' => ['auth:api','cors']], function () {
     Route::resource('person', PersonController::class);
     Route::resource('suspects', SuspectController::class);
     Route::resource('victims', VictimController::class);
-    Route::get('suspect/case/{caseId}', [SuspectController::class, 'getByCaseId']);
-    Route::get('victim/case/{caseId}', [VictimController::class, 'getByCaseId']);
+    Route::get('suspects/case/{caseId}', [SuspectController::class, 'getByCaseId']);
+    Route::get('victims/case/{caseId}', [VictimController::class, 'getByCaseId']);
     Route::resource('disposition', DispositionController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('firearms', FirearmController::class);

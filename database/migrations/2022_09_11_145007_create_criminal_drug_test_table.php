@@ -29,7 +29,7 @@ class CreateCriminalDrugTestTable extends Migration
             $table->string('gross_weight')->nullable();
             $table->string('classification');
             $table->string('delivered_by')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('received_by')->nullable();
             $table->string('evidence_status')->nullable();
             $table->string('qty_turned_over')->nullable();

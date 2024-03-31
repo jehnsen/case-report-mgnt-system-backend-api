@@ -62,4 +62,9 @@ class IncidentService {
     {
         return $this->incidentRepository->delete($id);
     }
+
+    public function cleanEntry()
+    {
+        return $this->incidentRepository->cleanEntry();
+    }
 }

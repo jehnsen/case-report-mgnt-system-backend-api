@@ -23,7 +23,10 @@ class Firearm extends Model
         'fmake',
         'fmodel',
         'ftype',
-        'fserialNo'
+        'fserial_no',
+        'image_filename',
+        'qty',
+        'status'
     ];
 
     protected $hidden = [

@@ -27,7 +27,9 @@ class CreateFirearmTable extends Migration
             $table->string('fmodel')->nullable();
             $table->string('ftype')->nullable();
             $table->string('fserial_no')->nullable();
-            $table->integer('status')->default(0);
+            $table->string('image_filename')->nullable();
+            $table->integer('qty')->default(0);
+            $table->string('status')->default('');
             $table->timestamps();
         });
     }

@@ -25,6 +25,11 @@ class FirearmRepository
     {
         return Firearm::where('id', $id)->update($data);
     }
+
+    public function getById($id)
+    {
+        return Firearm::where('id', $id)->first();
+    }
     
     public function getByCaseId($case_id){
         return Firearm::where('firearms.case_id', $case_id)->get();
