@@ -54,7 +54,6 @@ class IncidentRepository
 
         Firearm::where('case_no', 'new')->update(['case_no' => $newRecord->id]);
         Firearm::where('case_id', 0)->update(['case_id' => $newRecord->id]);
-        // Firearm::where('status', 0)->update(['status' => 1]);
 
         File::where('case_id', 0)->update(['case_id' => $newRecord->id]);
 
